@@ -8,6 +8,7 @@ import Restricted from "./Utility/Restricted";
 import Home from "./Home/Home";
 import RecipesClicked from "./recipes/RecipesClicked";
 import AddRecipe from "./AddRecipe/AddRecipe";
+import EditRecipe from "./EditRecipe/EditRecipe";
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -25,19 +26,22 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Restricted path="/addrecipe">
+        <Restricted exact path="/editrecipe:id">
+          <EditRecipe />
+        </Restricted>
+        <Restricted exact path="/addrecipe">
           <AddRecipe setRecipes={setRecipes} />
         </Restricted>
-        <Restricted path="/home:id">
+        <Restricted exact path="/home:id">
           <RecipesClicked recipes={recipes} setRecipes={setRecipes} />
         </Restricted>
-        <Restricted path="/home">
+        <Restricted exact path="/home">
           <Home recipes={recipes} setRecipes={setRecipes} />
         </Restricted>
         <Route exact path="/register">
           <Register />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <Login />
         </Route>
       </Switch>

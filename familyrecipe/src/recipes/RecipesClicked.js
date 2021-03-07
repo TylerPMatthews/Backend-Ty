@@ -42,6 +42,10 @@ const RecipesClicked = (props) => {
         console.log(`Axios register error, ${err.message}`);
       });
   };
+
+  const edit = () => {
+    history.push(`/editrecipe:${newID}`)
+  }
   return (
     <div>
       {clicked.map((item, idx) => {
@@ -57,6 +61,7 @@ const RecipesClicked = (props) => {
             <p>{item.ingredients}</p>
             <span>{item.category}</span>
             <button onClick={deleteClicked}>Delete</button>
+            <button onClick={edit}>Edit</button>
             <button onClick={goBack}>Back</button>
           </div>
         );
